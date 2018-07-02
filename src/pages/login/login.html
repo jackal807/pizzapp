@@ -1,0 +1,51 @@
+<ion-content padding class="loginPage">
+
+
+
+
+
+    <ion-list>
+      <ion-item text-center>
+        <ion-avatar>
+            <ion-img height="100" width="100" src="http://www.notizie.it/wp-content/uploads/2017/07/gemma-galgani-1.png"></ion-img>
+
+        </ion-avatar>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input type="text" [(ngModel)]="login.username"></ion-input>
+  </ion-item>
+    <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="login.password"></ion-input>
+    </ion-item>
+
+
+
+
+  <br/>
+  <br/>
+
+
+
+
+
+      <ion-row no-padding>
+          <ion-col text-center>
+              <button ion-button block (click)="authenticate()">Accedi</button>
+          </ion-col>
+        </ion-row>
+
+
+
+
+<ion-card color="danger" *ngIf="error">
+  <ion-card-content  text-center>
+      Login Errato
+  </ion-card-content>
+</ion-card>
+
+</ion-content>

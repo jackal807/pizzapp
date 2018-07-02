@@ -1,0 +1,13 @@
+page-orders {
+    ion-header {
+            background-color: #f8f8f8;
+    }
+    
+    
+    ion-select {
+         position: absolute;
+        .select-icon, .select-text {
+            display: none !important;  /* hidden triangle icon and selected text */
+        }
+    }
+}

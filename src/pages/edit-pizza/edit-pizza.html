@@ -1,0 +1,61 @@
+<!--
+  Generated template for the EditPizzaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-buttons left>
+           <button ion-button icon-only (click)="closeModal()">
+               <ion-icon name="arrow-back"></ion-icon>
+           </button>
+    </ion-buttons>
+
+    <ion-title>{{actionType}} Pizza</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="pizza.name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Ingredienti</ion-label>
+      <ion-input type="text" [(ngModel)]="pizza.ingredients"></ion-input>
+    </ion-item>
+
+    </ion-list>
+
+    <ion-row no-padding>
+        <ion-col text-center>
+          <ion-badge color="warn">
+            <span style="font-size: 4.5rem">{{(pizza.price/10) | currency:'EUR':true:'1.2-2'}}</span></ion-badge>
+        </ion-col>
+      </ion-row>
+
+
+
+
+        <ion-range [(ngModel)]="pizza.price" max="250" step="1">
+          <ion-icon range-left small >0</ion-icon>
+          <ion-icon range-right >25</ion-icon>
+        </ion-range>
+
+
+
+<ion-fab bottom right>
+    <button color="primary" ion-fab (click)="showSavePizzaConfirm()">
+      <ion-icon name="cloud-done"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

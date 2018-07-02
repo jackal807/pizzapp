@@ -1,0 +1,85 @@
+<!--
+  Generated template for the OrdersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Ordini</ion-title>
+      
+      
+      <ion-buttons right>
+           <button ion-button icon-only (click)="showFilterOptions()">
+               <ion-icon name="ios-funnel"></ion-icon>
+           </button>
+    </ion-buttons>
+      
+  </ion-navbar>
+    
+    
+
+</ion-header>
+
+
+<ion-content>
+
+
+    <ion-select #sectionSelect [(ngModel)]="filter">
+        <ion-option *ngFor="let filter of filters" [value]="filter.value">{{filter.name}}</ion-option>
+    </ion-select>
+
+
+  <ion-list>
+    <ion-item-group *ngFor="let order of orders" (dblclick)="showOrderDetailsModal(order)">
+
+        
+
+
+      <ion-item-divider [color]="statusColors[order.status.workingState]">
+
+        <!--
+        <button ion-button item-start color="primary" (click)="showOrderInfoPopover(myEvent, order)">
+          <ion-icon name="information-circle"></ion-icon>
+        </button>
+         -->
+
+        <ion-badge [color]="statusBadgeColors[order.status.workingState]" item-start>{{order.status.workingState == 'delivering' ? 'SPEDITO' : order.status.workingState == 'refused' ? 'RIFIUTATO' : order.status.workingState == 'working' ? 'PRONTO' : order.when.preferredTime | amTimeAgo}}</ion-badge>
+        
+
+        <button ion-button item-end color="danger" (click)="showOrderUpdateConfirm('rifiutato', order, 'refused')" [disabled]="order.status.workingState == 'delivering' || order.status.workingState == 'received'">
+          <ion-icon name="close"></ion-icon>
+        </button>
+
+        <button ion-button item-end color="secondary" (click)="showOrderUpdateConfirm('lavorato', order, 'working')" [disabled]="order.status.workingState == 'delivering' || order.status.workingState == 'received'">
+          <ion-icon name="checkmark"></ion-icon>
+        </button>
+
+        <button ion-button item-end color="primary" (click)="showOrderUpdateConfirm('in consegna', order, 'delivering')" [disabled]="order.status.workingState !== 'working'">
+          <ion-icon name="bicycle"></ion-icon>
+        </button>
+
+
+
+      </ion-item-divider>
+    <ion-item *ngFor="let pizza of order.pizzaList">
+      <ion-avatar item-start>
+        <img src="https://us.123rf.com/450wm/tribalium123/tribalium1231511/tribalium123151100036/47946282-pizza-on-cardboard-pizza-in-box-open-packing-box-for-pizza.jpg?ver=6"/>
+        <!--
+        <ion-img width="40" height="40" src="https://us.123rf.com/450wm/tribalium123/tribalium1231511/tribalium123151100036/47946282-pizza-on-cardboard-pizza-in-box-open-packing-box-for-pizza.jpg?ver=6"></ion-img>
+      -->
+      </ion-avatar>
+      <h2>{{pizza.pizza}}</h2>
+    <h3>{{packages[pizza.package]}}, {{sizes[pizza.size]}}</h3>
+    <p>{{order.notes}}</p>
+    <ion-note item-end>
+      <ion-badge color="secondary" *ngIf="pizza.new">
+          NUOVO
+      </ion-badge>
+    </ion-note>
+    </ion-item>
+</ion-item-group>
+</ion-list>
+
+</ion-content>

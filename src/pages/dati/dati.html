@@ -1,0 +1,209 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Dati</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+
+    <ion-row no-padding *ngIf="pizzeria">
+      <ion-col text-center>
+          <ion-item>
+            <ion-label floating>Nome</ion-label>
+            <ion-input type="text" [(ngModel)]="pizzeria.name"></ion-input>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row no-padding *ngIf="pizzeria">
+
+
+      <ion-col text-center>
+        <ion-item>
+          <ion-label floating>Telefono</ion-label>
+          <ion-input type="number" [(ngModel)]="pizzeria.phone"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col text-center>
+        <ion-item>
+          <ion-label floating>Città</ion-label>
+          <ion-input type="text" [(ngModel)]="pizzeria.where.city"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row no-padding *ngIf="pizzeria">
+      <ion-col text-center>
+        <ion-item>
+          <ion-label floating>Indirizzo</ion-label>
+          <ion-input type="text" [(ngModel)]="pizzeria.where.address"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row no-padding *ngIf="pizzeria">
+      <ion-col text-center>
+        <ion-item>
+          <ion-label>Apertura</ion-label>
+          <ion-datetime displayFormat="HH:mm" [(ngModel)]="pizzeria.when.openingTime"></ion-datetime>
+        </ion-item>
+      </ion-col>
+      <ion-col text-center>
+        <ion-item>
+          <ion-label>Chiusura</ion-label>
+          <ion-datetime displayFormat="HH:mm" [(ngModel)]="pizzeria.when.closingTime"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    
+    
+    
+    <ion-row no-padding *ngIf="pizzeria">
+      <ion-col text-center>
+        <ion-item>
+              <ion-label>Giorno di chiusura</ion-label>
+              <ion-select [(ngModel)]="pizzeria.when.closureDay">
+                <ion-option value="1">Lunedi</ion-option>
+                <ion-option value="2">Martedi</ion-option>
+                  <ion-option value="3">Mercoledi</ion-option>
+                  <ion-option value="4">Giovedi</ion-option>
+                  <ion-option value="5">Venerdi</ion-option>
+                  <ion-option value="6">Sabato</ion-option>
+                  <ion-option value="7">Domenica</ion-option>
+              </ion-select>
+            </ion-item>
+      </ion-col>
+    </ion-row>
+    
+    
+
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+
+  <ion-row no-padding *ngIf="pizzeria">
+    <ion-col text-center>
+
+
+
+        <ion-header no-padding>
+
+
+  <ion-toolbar>
+    <ion-title>Tariffe</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+    </ion-col>
+  </ion-row>
+
+<br/><br/><br/>
+
+    <ion-row no-padding *ngIf="pizzeria">
+      <ion-col text-center>
+        Maggiorazione gigante
+        <ion-row no-padding>
+            <ion-col text-center>
+              <ion-badge color="danger">
+                <span style="font-size: 4.5rem">{{(pizzeria.bigIncrease/10) | currency:'EUR':true:'1.2-2'}}</span></ion-badge>
+            </ion-col>
+          </ion-row>
+
+
+
+
+            <ion-range [(ngModel)]="pizzeria.bigIncrease" max="40" step="1">
+              <ion-icon range-left small >0</ion-icon>
+              <ion-icon range-right >4</ion-icon>
+            </ion-range>
+
+
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row no-padding *ngIf="pizzeria">
+      <ion-col text-center>
+        Minorazione ridotta
+        <ion-row no-padding>
+            <ion-col text-center>
+              <ion-badge color="secondary">
+                <span style="font-size: 4.5rem">- {{(pizzeria.smallReduction/10) | currency:'EUR':true:'1.2-2'}}</span></ion-badge>
+            </ion-col>
+          </ion-row>
+
+
+
+
+            <ion-range [(ngModel)]="pizzeria.smallReduction" max="40" step="1">
+              <ion-icon range-left small >0</ion-icon>
+              <ion-icon range-right >4</ion-icon>
+            </ion-range>
+
+
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row no-padding *ngIf="pizzeria">
+      <ion-col text-center>
+        Costo aggiuntivo cartone
+        <ion-row no-padding>
+            <ion-col text-center>
+              <ion-badge color="primary">
+                <span style="font-size: 4.5rem">{{(pizzeria.packageCost/10) | currency:'EUR':true:'1.2-2'}}</span></ion-badge>
+            </ion-col>
+          </ion-row>
+
+
+
+
+            <ion-range [(ngModel)]="pizzeria.packageCost" max="40" step="1">
+              <ion-icon range-left small >0</ion-icon>
+              <ion-icon range-right >4</ion-icon>
+            </ion-range>
+
+
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row no-padding *ngIf="pizzeria">
+      <ion-col text-center>
+        Costo trasporto
+        <ion-row no-padding>
+            <ion-col text-center>
+              <ion-badge color="warn">
+                <span style="font-size: 4.5rem">{{(pizzeria.deliveryCost/10) | currency:'EUR':true:'1.2-2'}}</span></ion-badge>
+            </ion-col>
+          </ion-row>
+
+
+
+
+            <ion-range [(ngModel)]="pizzeria.deliveryCost" max="40" step="1">
+              <ion-icon range-left small >0</ion-icon>
+              <ion-icon range-right >4</ion-icon>
+            </ion-range>
+
+
+
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row no-padding *ngIf="pizzeria">
+      <ion-col text-center>
+            <button ion-button block (click)="updatePizzeria()">Salva Modifiche</button>
+
+      </ion-col>
+    </ion-row>
+
+</ion-content>
